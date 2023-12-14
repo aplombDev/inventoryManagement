@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 });
 
 //mongodb config
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectID } = require("mongodb");
 const uri =
   "mongodb+srv://aayushj2001:QAYCn1OHCsLdP0R0@cluster0.zey151s.mongodb.net/?retryWrites=true&w=majority";
 
@@ -37,7 +37,38 @@ async function run() {
     app.post("/upload-book", async (req, res) => {
       const data = req.body;
       const result = await bookCollection.insertOne(data);
-      res.send(result)
+      res.send(result);
+    });
+
+    //get all books from database
+    app.get("/all-books", async (req, res) => {
+      const books = bookCollection.find();
+      const result = await books.toArray();
+      res.send(result);
+    });
+
+    //update all books : path or update method
+    app.patch("/book/:id", async (req, res) => {
+      const id = req.params.id;
+      const updateBookData = req.body;
+      const filter = { _id: new ObjectID(id) };
+      const updateDoc = {
+        $set: {
+          ...updateBookData,
+        },
+      };
+      const options = { upsert: true };
+      //update
+      const result = await bookCollection.updateOne(filter, updateDoc, options);
+      res.send(result);
+    });
+
+    //delete a book data
+    app.delete("/book/:id", async (req, res) => {
+      const {id} = req.params;
+      const filter = { _id: new ObjectID(id) };
+      const result = await bookCollection.deleteOne(filter);
+      res.send(result);
     });
 
     // Send a ping to confirm a successful connection
