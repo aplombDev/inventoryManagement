@@ -35,11 +35,12 @@ const Navbar = () => {
 
   return (
     <header>
-        <nav>
-            {/* */}
-        </nav>
+      <nav>
+        {/*logo*/}
+        <link to="/"></link>
+      </nav>
     </header>
-  )
+  );
 };
 
 export default Navbar;
