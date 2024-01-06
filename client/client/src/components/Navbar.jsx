@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+//react icons
+import { FaBlog } from "react-icons/fa6";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +41,9 @@ const Navbar = () => {
     <header>
       <nav>
         {/*logo*/}
-        <link to="/"></link>
+        <link to="/">
+          <FaBlog />
+        </link>
       </nav>
     </header>
   );
