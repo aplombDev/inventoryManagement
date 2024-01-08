@@ -66,6 +66,7 @@ const Navbar = () => {
             <FaBarsStaggered className="w-5 hover:text-blue-700" />
           </button>
         </div>
+        {/* menu btn for the mobile devices */}
       </nav>
     </header>
   );
