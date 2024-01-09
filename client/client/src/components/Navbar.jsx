@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 //react icons
-import { FaBarsStaggered, FaBlog } from "react-icons/fa6";
+import { FaBarsStaggered, FaBlog, FaXmark } from "react-icons/fa6";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,7 +59,6 @@ const Navbar = () => {
             </Link>;
           })}
         </ul>
-
         {/* btn for lg devices */}
         <div className="space-x-12 hidden lg:flex items-center">
           <button>
@@ -68,7 +67,28 @@ const Navbar = () => {
         </div>
         {/* menu btn for the mobile devices */}
         <div className="md:hidden">
-
+          <button
+            onClick={toggleMenu}
+            className="text-black focus:outline-none "
+          >
+            {isMenuOpen ? (
+              <FaXmark className="h-5 w-5 text-black" />
+            ) : (
+              <FaBarsStaggered className="h-5 w-5 text-black" />
+            )}
+          </button>
+        </div>
+        {/* navItems for a sm devices */}
+        <div>
+          {navItem.map(({ link, path }) => {
+            <Link
+              key={path}
+              to={path}
+              className="block text-base text-black uppercase cursor-pointer hover:text-blue-700"
+            >
+              {link}
+            </Link>;
+          })}
         </div>
       </nav>
     </header>
