@@ -67,6 +67,9 @@ const Navbar = () => {
           </button>
         </div>
         {/* menu btn for the mobile devices */}
+        <div className="md:hidden">
+
+        </div>
       </nav>
     </header>
   );
